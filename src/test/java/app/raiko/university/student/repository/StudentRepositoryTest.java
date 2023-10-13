@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import app.raiko.university.student.entity.Student;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -89,5 +90,10 @@ class StudentRepositoryTest {
 
     var actual = studentRepository.existsByNumber(number);
     Assertions.assertThat(actual).isTrue();
+  }
+
+  @AfterEach
+  void tearDown() {
+    studentRepository.deleteAll();
   }
 }
