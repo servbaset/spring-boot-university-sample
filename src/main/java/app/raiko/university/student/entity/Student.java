@@ -29,7 +29,7 @@ public class Student {
   private String address;
 
   @Column(name = "student_number")
-  private String StudentNumber;
+  private String number;
 
   @Override
   public final boolean equals(Object o) {

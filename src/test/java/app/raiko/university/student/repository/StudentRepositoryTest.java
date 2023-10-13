@@ -3,6 +3,7 @@ package app.raiko.university.student.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import app.raiko.university.student.entity.Student;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -21,7 +22,7 @@ class StudentRepositoryTest {
 
     var savableStudent =
         Student.builder()
-            .StudentNumber(number)
+            .number(number)
             .firstName(firstName)
             .lastName(lastName)
             .nationalCode(nationalCode)
@@ -39,8 +40,54 @@ class StudentRepositoryTest {
               assertThat(student.getFirstName()).isEqualTo(firstName);
               assertThat(student.getLastName()).isEqualTo(lastName);
               assertThat(student.getNationalCode()).isEqualTo(nationalCode);
-              assertThat(student.getStudentNumber()).isEqualTo(number);
+              assertThat(student.getNumber()).isEqualTo(number);
               assertThat(student.getAddress()).isEqualTo(address);
             });
+  }
+
+  @Test
+  void itShouldExistsByNationalCode() {
+    String number = "94249801";
+    String firstName = "jahangir";
+    String lastName = "shokrollahi";
+    String nationalCode = "3040483781";
+    String address = "my address";
+
+    var savableStudent =
+        Student.builder()
+            .number(number)
+            .firstName(firstName)
+            .lastName(lastName)
+            .nationalCode(nationalCode)
+            .address(address)
+            .build();
+
+    studentRepository.save(savableStudent);
+
+    var actual = studentRepository.existsByNationalCode(nationalCode);
+    Assertions.assertThat(actual).isTrue();
+  }
+
+  @Test
+  void itShouldExistsByNumber() {
+    String number = "94249801";
+    String firstName = "jahangir";
+    String lastName = "shokrollahi";
+    String nationalCode = "3040483781";
+    String address = "my address";
+
+    var savableStudent =
+        Student.builder()
+            .number(number)
+            .firstName(firstName)
+            .lastName(lastName)
+            .nationalCode(nationalCode)
+            .address(address)
+            .build();
+
+    studentRepository.save(savableStudent);
+
+    var actual = studentRepository.existsByNumber(number);
+    Assertions.assertThat(actual).isTrue();
   }
 }
