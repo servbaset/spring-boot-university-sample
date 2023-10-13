@@ -2,7 +2,6 @@ package app.raiko.university.student.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import app.raiko.university.repository.StudentRepository;
 import app.raiko.university.student.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

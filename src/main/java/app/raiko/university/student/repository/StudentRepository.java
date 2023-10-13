@@ -1,4 +1,4 @@
-package app.raiko.university.repository;
+package app.raiko.university.student.repository;
 
 import app.raiko.university.student.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
